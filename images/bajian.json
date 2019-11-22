@@ -1,0 +1,231 @@
+{"frames": {
+
+"拔箭_00000.png":
+{
+	"frame": {"x":2,"y":2,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00001.png":
+{
+	"frame": {"x":254,"y":2,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00002.png":
+{
+	"frame": {"x":506,"y":2,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00003.png":
+{
+	"frame": {"x":758,"y":2,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00004.png":
+{
+	"frame": {"x":2,"y":254,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00005.png":
+{
+	"frame": {"x":254,"y":254,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00006.png":
+{
+	"frame": {"x":506,"y":254,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00007.png":
+{
+	"frame": {"x":758,"y":254,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00008.png":
+{
+	"frame": {"x":2,"y":506,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00009.png":
+{
+	"frame": {"x":254,"y":506,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00010.png":
+{
+	"frame": {"x":506,"y":506,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00011.png":
+{
+	"frame": {"x":758,"y":506,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00012.png":
+{
+	"frame": {"x":2,"y":758,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00013.png":
+{
+	"frame": {"x":254,"y":758,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00014.png":
+{
+	"frame": {"x":506,"y":758,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00015.png":
+{
+	"frame": {"x":758,"y":758,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00016.png":
+{
+	"frame": {"x":2,"y":1010,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00017.png":
+{
+	"frame": {"x":254,"y":1010,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00018.png":
+{
+	"frame": {"x":506,"y":1010,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00019.png":
+{
+	"frame": {"x":758,"y":1010,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00020.png":
+{
+	"frame": {"x":2,"y":1262,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00021.png":
+{
+	"frame": {"x":254,"y":1262,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00022.png":
+{
+	"frame": {"x":506,"y":1262,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00023.png":
+{
+	"frame": {"x":758,"y":1262,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00024.png":
+{
+	"frame": {"x":2,"y":1514,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00025.png":
+{
+	"frame": {"x":254,"y":1514,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+},
+"拔箭_00026.png":
+{
+	"frame": {"x":506,"y":1514,"w":250,"h":250},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":250},
+	"sourceSize": {"w":250,"h":250}
+}},
+"animations": {
+	"拔箭": ["拔箭_00000.png","拔箭_00001.png","拔箭_00002.png","拔箭_00003.png","拔箭_00004.png","拔箭_00005.png","拔箭_00006.png","拔箭_00007.png","拔箭_00008.png","拔箭_00009.png","拔箭_00010.png","拔箭_00011.png","拔箭_00012.png","拔箭_00013.png","拔箭_00014.png","拔箭_00015.png","拔箭_00016.png","拔箭_00017.png","拔箭_00018.png","拔箭_00019.png","拔箭_00020.png","拔箭_00021.png","拔箭_00022.png","拔箭_00023.png","拔箭_00024.png","拔箭_00025.png","拔箭_00026.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "bajian.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e0ea32f5c32ab3eb50cd373a581ddb7a:8e0274f21a5dd0df4d99a68751911c3e:85ec15e1f077e48ecaba8c31ca375dd1$"
+}
+}
