@@ -6,6 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>pixi</title>
+  <!-- rem -->
+  <script>
+    (function (win, doc) {
+      if (!win.addEventListener) return;
+      var html = document.documentElement;
+      function setFont() {
+        var html = document.documentElement;
+        var k = 750;
+        html.style.fontSize = (html.clientWidth / k * 100 > 100 ? 100 : html.clientWidth / k * 100) + "px";
+      }
+      setFont();
+      setTimeout(function () {
+        setFont();
+      }, 300);
+      doc.addEventListener('DOMContentLoaded', setFont, false);
+      win.addEventListener('resize', setFont, false);
+      win.addEventListener('load', setFont, false);
+    })(window, document);
+  </script>
   <script src="./js/pixi.min.js"></script>
   <script src="./js/scaleToWindow.js"></script>
   <style>
@@ -20,10 +39,106 @@
       height: 100%;
       overflow: hidden;
     }
+
+    .mask {
+      background-color: #555;
+      border-top: 1px solid #555;
+      position: absolute;
+      height: 100%;
+      z-index: 9998;
+      width: 100%;
+      left: 0px;
+      top: 0px;
+      opacity: 0.5;
+      display: none;
+    }
+
+    .dialog {
+      background: url(images/dialogBg.png) no-repeat 0 0 / 100% 100%;
+      width: 3.76rem;
+      height: 1.88rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-left: -1.88rem;
+      margin-top: -0.94rem;
+      z-index: 9999;
+      display: none;
+      transform: scale(0.1);
+      animation: scaleAni 0.8s ease forwards;
+    }
+
+    @keyframes scaleAni {
+      0% {
+        transform: scale(0.1);
+      }
+
+      100% {
+        transform: scale(1.5);
+      }
+    }
+
+    .title {
+      display: block;
+      width: 2.5rem;
+      height: 0.47rem;
+      margin: 0.3rem auto 0;
+    }
+
+    .btnBox {
+      width: 3.3rem;
+      height: 0.43rem;
+      display: flex;
+      justify-content: space-between;
+      margin: 0.3rem auto;
+    }
+
+    .btnBox a {
+      width: 1.54rem;
+    }
+
+    .btnBox a img {
+      display: block;
+      width: 100%;
+    }
+
+    .ani {
+      animation: pulse 0.6s ease infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+
+      50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+      }
+
+      100% {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div class="mask"></div>
+  <div class="dialog">
+    <img src="images/dialogInfo.png" alt="" class="title">
+    <div class="btnBox">
+      <a href="/" class="yes ani">
+        <img src="images/yes.png" alt="">
+      </a>
+      <a href="/" class="no">
+        <img src="images/no.png" alt="">
+      </a>
+    </div>
+  </div>
+
   <script>
     // 检测是否支持WebGL
     let type = "WebGL"
@@ -44,6 +159,10 @@
       scaleToWindow(app.view);
     });
 
+    let defaultIcon = "url('images/finger.png'), auto";
+    app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
+
+
     // 资源通过loader加载到纹理缓存中
     PIXI.loader
       .add([
@@ -51,14 +170,14 @@
         "images/daiji.json",
         "images/huanhu.json",
         "images/jiaozheng.json",
-        "images/jzhbj.json",
         "images/jzhdj.json",
         "images/bucket.png",
         "images/finger.png",
         "images/bg.png",
         "images/fire.json",
         "images/bandage.png",
-        "images/water.json"
+        "images/water.json",
+        "images/sshdj.png"
       ])
       .on("progress", loadProgressHandler)
       .load(setup)
@@ -66,8 +185,12 @@
     function loadProgressHandler(loader, resource) {
       console.log(`${resource.url}: ${loader.progress}%`)
     }
-    let finger, bucket, bandage, bg
+    let bg, finger, bucket, bandage, fire, water, hh, dj, jzhdj, jzh, circle, sshdj, bjArea, bj;
+    let mask = document.querySelector('.mask')
+    let dialog = document.querySelector('.dialog')
+
     function setup() {
+
       // 背景
       bg = new PIXI.Sprite(
         PIXI.loader.resources["images/bg.png"].texture
@@ -77,8 +200,7 @@
       bg.height = 750
       bg.position.set(0, 0)
       app.stage.addChild(bg)
-      
-
+      bg.scale.set(2)
 
       // 待机
       let djArr = []
@@ -92,7 +214,7 @@
         djArr.push(texture)
       }
 
-      let dj = new PIXI.extras.AnimatedSprite(djArr)
+      dj = new PIXI.extras.AnimatedSprite(djArr)
       dj.width = 500
       dj.height = 500
       dj.position.set(0, 300)
@@ -114,7 +236,7 @@
         fireArr.push(texture)
       }
 
-      let fire = new PIXI.extras.AnimatedSprite(fireArr)
+      fire = new PIXI.extras.AnimatedSprite(fireArr)
       fire.width = 300
       fire.height = 300
       fire.position.set(40, 190)
@@ -124,58 +246,24 @@
       fire.loop = true
       fire.play();
 
-      // 绷带
-      bandage = new PIXI.Sprite(
-        PIXI.loader.resources["images/bandage.png"].texture
-      );
-      bandage.width = 200
-      bandage.height = 200
-      bandage.position.set(600, 200)
-      bandage.interactive = true;
-      bandage.buttonMode = true;
-      bandage.anchor.set(0.5);
-      bandage.scale.set(0.5)
-      bandage.on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
-
-      app.stage.addChild(bandage)
-
-      // 水桶
-      bucket = new PIXI.Sprite(
-        PIXI.loader.resources["images/bucket.png"].texture
-      );
-      bucket.width = 200
-      bucket.height = 200
-      bucket.position.set(600, 350)
-      bucket.interactive = true;
-      bucket.buttonMode = true;
-      bucket.anchor.set(0.5);
-      bucket.on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
-
-      app.stage.addChild(bucket)
 
 
       // 手
-      finger = new PIXI.Sprite(
-        PIXI.loader.resources["images/finger.png"].texture
-      );
-      finger.width = 400
-      finger.height = 400
-      finger.position.set(500, 400)
-      finger.interactive = true;
-      finger.buttonMode = true;
-      finger.anchor.set(0.5);
-      finger.scale.set(0.5)
-      finger.on('pointerdown', onDragStart)
-        .on('pointerup', onDragEnd)
-        .on('pointerupoutside', onDragEnd)
-        .on('pointermove', onDragMove);
-      app.stage.addChild(finger)
+      // finger = new PIXI.Sprite(
+      //   PIXI.loader.resources["images/finger.png"].texture
+      // );
+      // finger.width = 400
+      // finger.height = 400
+      // finger.position.set(500, 400)
+      // finger.interactive = true;
+      // finger.buttonMode = true;
+      // finger.anchor.set(0.5);
+      // finger.scale.set(0.5)
+      // finger.on('pointerdown', onDragStart)
+      //   .on('pointerup', onDragEnd)
+      //   .on('pointerupoutside', onDragEnd)
+      //   .on('pointermove', onDragMove);
+      // app.stage.addChild(finger)
 
       // 浇水
       let waterArr = []
@@ -189,69 +277,14 @@
         waterArr.push(texture)
       }
 
-      let water = new PIXI.extras.AnimatedSprite(waterArr)
+      water = new PIXI.extras.AnimatedSprite(waterArr)
       water.width = 300
       water.height = 300
       water.position.set(40, 170)
       water.animationSpeed = 0.3;
-      app.stage.addChild(water)
-      water.interactive = true;
-      water.loop = true
-      water.play();
-
-
-
-
-
-      // 脚正待机
-      let jzhdjArr = []
-      for (let i = 0; i < 14; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正待机_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正待机_000${i}.png`)
-        }
-        jzhdjArr.push(texture)
-      }
-
-      let jzhdj = new PIXI.extras.AnimatedSprite(jzhdjArr)
-      jzhdj.width = 250
-      jzhdj.height = 250
-      jzhdj.position.set(300, 0)
-      jzhdj.animationSpeed = 0.2;
-      // app.stage.addChild(jzhdj)
-      jzhdj.interactive = true;
-      jzhdj.loop = true
-      jzhdj.on('pointerdown', function () {
-        jzhdj.play();
-      })
-
-
-
-      // 脚正
-      let jzhArr = []
-      for (let i = 0; i < 15; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正_000${i}.png`)
-        }
-        jzhArr.push(texture)
-      }
-
-      let jzh = new PIXI.extras.AnimatedSprite(jzhArr)
-      jzh.width = 250
-      jzh.height = 250
-      jzh.position.set(0, 300)
-      jzh.animationSpeed = 0.2;
-      // app.stage.addChild(jzh)
-      jzh.interactive = true;
-      jzh.loop = false
-      jzh.on('pointerdown', function () {
-        jzh.play();
-      })
+      // app.stage.addChild(water)
+      water.loop = false
+      // water.play();
 
       // 欢呼
       let hhArr = []
@@ -265,17 +298,100 @@
         hhArr.push(texture)
       }
 
-      let hh = new PIXI.extras.AnimatedSprite(hhArr)
-      hh.width = 250
-      hh.height = 250
-      hh.position.set(300, 300)
-      hh.animationSpeed = 0.2;
-      // app.stage.addChild(hh)
+      hh = new PIXI.extras.AnimatedSprite(hhArr)
+      hh.width = 500
+      hh.height = 500
+      hh.position.set(0, 300)
+      hh.animationSpeed = 0.15;
       hh.interactive = true;
-      hh.loop = true
-      hh.on('pointerdown', function () {
-        hh.play();
-      })
+      hh.loop = false
+
+
+      // 受伤的脚
+      sshdj = new PIXI.Sprite(
+        PIXI.loader.resources["images/sshdj.png"].texture
+      );
+      sshdj.width = 40
+      sshdj.height = 40
+      sshdj.position.set(200, 650)
+      app.stage.addChild(sshdj)
+
+      // 脚正
+      let jzhArr = []
+      for (let i = 0; i < 15; i++) {
+        let texture
+        if (i < 10) {
+          texture = PIXI.Texture.fromFrame(`脚正_0000${i}.png`)
+        } else {
+          texture = PIXI.Texture.fromFrame(`脚正_000${i}.png`)
+        }
+        jzhArr.push(texture)
+      }
+      jzh = new PIXI.extras.AnimatedSprite(jzhArr)
+      jzh.width = 500
+      jzh.height = 500
+      jzh.position.set(0, 300)
+      jzh.animationSpeed = 0.2;
+      // app.stage.addChild(jzh)
+      jzh.interactive = true;
+      jzh.loop = false
+
+      // 脚正待机
+      let jzhdjArr = []
+      for (let i = 0; i < 14; i++) {
+        let texture
+        if (i < 10) {
+          texture = PIXI.Texture.fromFrame(`脚正待机_0000${i}.png`)
+        } else {
+          texture = PIXI.Texture.fromFrame(`脚正待机_000${i}.png`)
+        }
+        jzhdjArr.push(texture)
+      }
+
+      jzhdj = new PIXI.extras.AnimatedSprite(jzhdjArr)
+      jzhdj.width = 500
+      jzhdj.height = 500
+      jzhdj.position.set(0, 300)
+      jzhdj.animationSpeed = 0.2;
+      // app.stage.addChild(jzhdj)
+      jzhdj.interactive = true;
+      jzhdj.loop = true
+      jzhdj.play();
+
+      // 绷带
+      bandage = new PIXI.Sprite(
+        PIXI.loader.resources["images/bandage.png"].texture
+      );
+      bandage.width = 293
+      bandage.height = 285
+      bandage.position.set(600, 200)
+      bandage.interactive = true;
+      // bandage.buttonMode = true;
+      bandage.anchor.set(0.5);
+      bandage.scale.set(0.5)
+      bandage.on('pointerdown', onDragStart)
+        .on('pointerup', onDragEnd)
+        .on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove);
+
+      app.stage.addChild(bandage)
+
+      // 水桶
+      bucket = new PIXI.Sprite(
+        PIXI.loader.resources["images/bucket.png"].texture
+      );
+      bucket.width = 150
+      bucket.height = 150
+      bucket.position.set(600, 350)
+      bucket.interactive = true;
+      // bucket.buttonMode = true;
+      bucket.anchor.set(0.5);
+      bucket.on('pointerdown', onDragStart)
+        .on('pointerup', onDragEnd)
+        .on('pointerupoutside', onDragEnd)
+        .on('pointermove', onDragMove);
+
+      app.stage.addChild(bucket)
 
       // 拔箭
       let bjArr = []
@@ -289,78 +405,118 @@
         bjArr.push(texture)
       }
 
-      let bj = new PIXI.extras.AnimatedSprite(bjArr)
-      bj.width = 250
-      bj.height = 250
-      bj.position.set(0, 600)
+      bj = new PIXI.extras.AnimatedSprite(bjArr)
+      bj.width = 500
+      bj.height = 500
+      bj.position.set(0, 300)
       bj.animationSpeed = 0.2;
-      // app.stage.addChild(bj)
-      bj.interactive = true;
       bj.loop = false
-      bj.on('pointerdown', function () {
-        bj.play();
-      })
-
-
-      // 脚正拔箭
-      let jzhebjArr = []
-      for (let i = 0; i < 26; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正拔箭_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正拔箭_000${i}.png`)
-        }
-        jzhebjArr.push(texture)
+      // app.stage.addChild(bj)
+      // bj.play();
+      bj.onComplete = function () {
+        mask.style.display = 'block';
+        dialog.style.display = 'block';
       }
 
-      let jzhebj = new PIXI.extras.AnimatedSprite(jzhebjArr)
-      jzhebj.width = 250
-      jzhebj.height = 250
-      jzhebj.position.set(300, 600)
-      jzhebj.animationSpeed = 0.2;
-      // app.stage.addChild(jzhebj)
-      jzhebj.interactive = true;
-      jzhebj.loop = false
-      jzhebj.on('pointerdown', function () {
-        jzhebj.play();
-      })
+
+      // 拔箭区域
+      bjArea = new PIXI.Sprite(
+        PIXI.loader.resources["images/sshdj.png"].texture
+      );
+      bjArea.width = 100
+      bjArea.height = 40
+      bjArea.position.set(260, 540)
+      bjArea.interactive = true;
+      bjArea.anchor.set(0.5);
+      bjArea.on('pointerdown', onDragStart)
+        .on('pointerup', onDragEnd2)
+        .on('pointerupoutside', onDragEnd2)
+        .on('pointermove', onDragMove);
+      app.stage.addChild(bjArea)
 
 
       // 碰撞检测
-      if (hitTestRectangle(finger, bucket)) {
-        console.log('碰撞了。。。')
-      } else {
+      // if (hitTestRectangle(finger, bucket)) {
+      //   console.log('碰撞了。。。')
+      // } else {
 
-      }
+      // }
 
-
-      // gameLoop();
+      gameLoop();
     }
+
     let state = play;
+    let waterLock = true
+    let jLock = true
+    let bjLock = true
+
     function gameLoop() {
       // 循环调用gameLoop
       requestAnimationFrame(gameLoop);
       state();
     }
     function play() {
-      if (hitTestRectangle(finger, bucket)) {
-        console.log("碰撞到了!");
-        bucket.x = finger.x
-        bucket.y = finger.y
-      } else {
+      if (hitTestRectangle(fire, bucket) && waterLock) {
+        waterLock = false
+        bucket.rotation = -0.8;
+        setTimeout(function () {
+          app.stage.removeChild(bucket)
+          app.stage.addChild(water)
+          water.play();
+          water.onComplete = function () {
+            app.stage.removeChild(water)
+            app.stage.removeChild(fire)
+            if (jLock) {
+              app.stage.removeChild(dj)
+              app.stage.addChild(hh)
+              hh.play();
+              hh.onComplete = function () {
+                app.stage.removeChild(hh)
+                app.stage.addChild(dj)
+                app.stage.addChild(bandage)
+              }
+            } else {
+              app.stage.removeChild(jzhdj)
+              app.stage.addChild(hh)
+              hh.play();
+              hh.onComplete = function () {
+                app.stage.removeChild(hh)
+                app.stage.addChild(jzhdj)
+              }
+            }
+          }
+        }, 300)
       }
+
+      if (hitTestRectangle(sshdj, bandage) && jLock) {
+        console.log('碰撞了。。。')
+        jLock = false
+        app.stage.removeChild(bandage)
+        app.stage.removeChild(dj)
+        app.stage.addChild(jzh)
+        jzh.play();
+        jzh.onComplete = function () {
+          app.stage.removeChild(jzh)
+          app.stage.addChild(jzhdj)
+          if (waterLock) {
+            app.stage.addChild(bucket)
+          }
+        }
+      }
+
+      if (bjLock) {
+        app.stage.addChild(bjArea)
+      }
+
     }
 
-
+    // 拖拽
     function onDragStart(event) {
       this.data = event.data;
-      this.alpha = 1;
       this.dragging = true;
     }
 
     function onDragEnd() {
-      this.alpha = 1;
       this.dragging = false;
       this.data = null;
     }
@@ -374,6 +530,33 @@
 
     }
 
+    function onDragEnd2() {
+      this.dragging = false;
+      this.data = null;
+      bucket.interactive = false;
+      bandage.interactive = false;
+      bjLock = false;
+      app.stage.removeChild(bjArea)
+      if (jLock) {
+        app.stage.removeChild(fire)
+        app.stage.removeChild(dj)
+        app.stage.addChild(bj)
+        setTimeout(function () {
+          bj.play();
+        }, 100)
+      } else {
+        app.stage.removeChild(fire)
+        app.stage.removeChild(jzhdj)
+        app.stage.addChild(bj)
+        setTimeout(function () {
+          bj.play();
+        }, 100)
+
+      }
+
+    }
+
+    // 碰撞检测
     function hitTestRectangle(r1, r2) {
 
       //Define the variables we'll need to calculate
@@ -424,6 +607,7 @@
       //`hit` will be either `true` or `false`
       return hit;
     };
+
   </script>
 </body>
 
