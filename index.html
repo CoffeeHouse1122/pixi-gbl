@@ -177,7 +177,9 @@
         "images/fire.json",
         "images/bandage.png",
         "images/water.json",
-        "images/sshdj.png"
+        "images/sshdj.png",
+        "images/jzhbj.json",
+        "images/jzhhh.json"
       ])
       .on("progress", loadProgressHandler)
       .load(setup)
@@ -185,7 +187,7 @@
     function loadProgressHandler(loader, resource) {
       console.log(`${resource.url}: ${loader.progress}%`)
     }
-    let bg, finger, bucket, bandage, fire, water, hh, dj, jzhdj, jzh, circle, sshdj, bjArea, bj;
+    let bg, finger, bucket, bandage, fire, water, hh, dj, jzhdj, jzh, circle, sshdj, bjArea, bj, jzhbj, jzhhh;
     let mask = document.querySelector('.mask')
     let dialog = document.querySelector('.dialog')
 
@@ -306,6 +308,25 @@
       hh.interactive = true;
       hh.loop = false
 
+      // 脚正欢呼
+      let jzhhhArr = []
+      for (let i = 0; i < 12; i++) {
+        let texture
+        if (i < 10) {
+          texture = PIXI.Texture.fromFrame(`脚正欢呼_0000${i}.png`)
+        } else {
+          texture = PIXI.Texture.fromFrame(`脚正欢呼_000${i}.png`)
+        }
+        jzhhhArr.push(texture)
+      }
+
+      jzhhh = new PIXI.extras.AnimatedSprite(jzhhhArr)
+      jzhhh.width = 500
+      jzhhh.height = 500
+      jzhhh.position.set(0, 300)
+      jzhhh.animationSpeed = 0.15;
+      jzhhh.interactive = true;
+      jzhhh.loop = false
 
       // 受伤的脚
       sshdj = new PIXI.Sprite(
@@ -418,6 +439,30 @@
         dialog.style.display = 'block';
       }
 
+      // 脚正拔箭
+      let jzhbjArr = []
+      for (let i = 0; i < 28; i++) {
+        let texture
+        if (i < 10) {
+          texture = PIXI.Texture.fromFrame(`脚正拔箭_0000${i}.png`)
+        } else {
+          texture = PIXI.Texture.fromFrame(`脚正拔箭_000${i}.png`)
+        }
+        jzhbjArr.push(texture)
+      }
+
+      jzhbj = new PIXI.extras.AnimatedSprite(jzhbjArr)
+      jzhbj.width = 500
+      jzhbj.height = 500
+      jzhbj.position.set(0, 300)
+      jzhbj.animationSpeed = 0.2;
+      jzhbj.loop = false
+      // app.stage.addChild(jzhbj)
+      // jzhbj.play();
+      jzhbj.onComplete = function () {
+        mask.style.display = 'block';
+        dialog.style.display = 'block';
+      }
 
       // 拔箭区域
       bjArea = new PIXI.Sprite(
@@ -477,10 +522,10 @@
               }
             } else {
               app.stage.removeChild(jzhdj)
-              app.stage.addChild(hh)
-              hh.play();
-              hh.onComplete = function () {
-                app.stage.removeChild(hh)
+              app.stage.addChild(jzhhh)
+              jzhhh.play();
+              jzhhh.onComplete = function () {
+                app.stage.removeChild(jzhhh)
                 app.stage.addChild(jzhdj)
               }
             }
@@ -547,9 +592,9 @@
       } else {
         app.stage.removeChild(fire)
         app.stage.removeChild(jzhdj)
-        app.stage.addChild(bj)
+        app.stage.addChild(jzhbj)
         setTimeout(function () {
-          bj.play();
+          jzhbj.play();
         }, 100)
 
       }
