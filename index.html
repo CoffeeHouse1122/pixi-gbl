@@ -411,9 +411,9 @@
           ease: Bounce.easeOut,
           onComplete: function () {
             TweenMax.to(death, 0.5, {
-              alpha: 0,
+              // alpha: 0,
               onComplete: function () {
-                app.stage.removeChild(death)
+                // app.stage.removeChild(death)
                 xue.stop()
                 xue2.stop()
                 dialog.style.display = 'block';
