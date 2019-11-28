@@ -29,6 +29,7 @@
   <script src="js/scaleToWindow.js"></script>
   <script src="js/pixi-filters.js"></script>
   <script src="js/TweenMax.min.js"></script>
+  <script src="js/spriteUtilities.js"></script>
   <style>
     * {
       margin: 0;
@@ -122,6 +123,7 @@
 </head>
 
 <body>
+
   <div class="dialog">
     <img src="images/dialogInfo.png" alt="" class="title">
     <div class="btnBox">
@@ -168,29 +170,31 @@
     let defaultIcon = "url('images/finger.png'), auto";
     app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
 
+    let su = new SpriteUtilities(PIXI);
 
     // 资源通过loader加载到纹理缓存中
     PIXI.loader
       .add([
-        "images/daiji.json",
-        "images/huanhu.json",
-        "images/jiaozheng.json",
-        "images/jzhdj.json",
+        "images/daiji.png",
+        "images/huanhu.png",
+        "images/jiaozheng.png",
+        "images/jzhdj.png",
         "images/bucket.png",
         "images/finger.png",
         "images/bg.png",
-        "images/fire.json",
+        "images/fire.png",
         "images/bandage.png",
-        "images/water.json",
+        "images/water.png",
         "images/sshdj.png",
-        "images/jzhbj.json",
+        "images/jzhbj.png",
         "images/lightmap.png",
         "images/hand.png",
-        "images/xue1.json",
-        "images/xue2.json",
+        "images/xue1.png",
+        "images/xue2.png",
         "images/Thanks.png",
         "images/Nice.png",
         "images/death.png",
+        "images/install.png"
       ])
       .on("progress", loadProgressHandler)
       .load(setup)
@@ -219,17 +223,7 @@
 
 
       // 待机
-      let djArr = []
-      for (let i = 0; i < 10; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`哥布林待机_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`哥布林待机_000${i}.png`)
-        }
-        djArr.push(texture)
-      }
-
+      let djArr = su.filmstrip("images/daiji.png", 250, 250);
       dj = new PIXI.extras.AnimatedSprite(djArr)
       dj.width = 500
       dj.height = 500
@@ -240,18 +234,9 @@
       dj.loop = true
       dj.play();
 
-      // 着火
-      let fireArr = []
-      for (let i = 0; i < 9; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`着火_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`着火_000${i}.png`)
-        }
-        fireArr.push(texture)
-      }
 
+      // 着火
+      let fireArr = su.filmstrip("images/fire.png", 200, 200);
       fire = new PIXI.extras.AnimatedSprite(fireArr)
       fire.width = 300
       fire.height = 300
@@ -263,17 +248,7 @@
       fire.play();
 
       // 浇水
-      let waterArr = []
-      for (let i = 0; i < 8; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`浇水_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`浇水_000${i}.png`)
-        }
-        waterArr.push(texture)
-      }
-
+      let waterArr = su.filmstrip("images/water.png", 400, 400);
       water = new PIXI.extras.AnimatedSprite(waterArr)
       water.width = 300
       water.height = 300
@@ -284,17 +259,7 @@
       // water.play();
 
       // 欢呼
-      let hhArr = []
-      for (let i = 0; i < 9; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`欢呼_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`欢呼_000${i}.png`)
-        }
-        hhArr.push(texture)
-      }
-
+      let hhArr = su.filmstrip("images/huanhu.png", 250, 250);
       hh = new PIXI.extras.AnimatedSprite(hhArr)
       hh.width = 500
       hh.height = 500
@@ -313,16 +278,7 @@
       app.stage.addChild(sshdj)
 
       // 脚正
-      let jzhArr = []
-      for (let i = 0; i < 15; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正_000${i}.png`)
-        }
-        jzhArr.push(texture)
-      }
+      let jzhArr = su.filmstrip("images/jiaozheng.png", 250, 250);
       jzh = new PIXI.extras.AnimatedSprite(jzhArr)
       jzh.width = 500
       jzh.height = 500
@@ -333,17 +289,7 @@
       jzh.loop = false
 
       // 脚正待机
-      let jzhdjArr = []
-      for (let i = 0; i < 14; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正待机_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正待机_000${i}.png`)
-        }
-        jzhdjArr.push(texture)
-      }
-
+      let jzhdjArr = su.filmstrip("images/jzhdj.png", 250, 250);
       jzhdj = new PIXI.extras.AnimatedSprite(jzhdjArr)
       jzhdj.width = 500
       jzhdj.height = 500
@@ -387,17 +333,7 @@
       app.stage.addChild(bucket)
 
       // 脚正拔箭
-      let jzhbjArr = []
-      for (let i = 0; i < 28; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`脚正拔箭_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`脚正拔箭_000${i}.png`)
-        }
-        jzhbjArr.push(texture)
-      }
-
+      let jzhbjArr = su.filmstrip("images/jzhbj.png", 250, 250);
       jzhbj = new PIXI.extras.AnimatedSprite(jzhbjArr)
       jzhbj.width = 500
       jzhbj.height = 500
@@ -427,17 +363,7 @@
       }
 
       // 溅血
-      let xueArr = []
-      for (let i = 0; i < 14; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`血2_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`血2_000${i}.png`)
-        }
-        xueArr.push(texture)
-      }
-
+      let xueArr = su.filmstrip("images/xue2.png", 400, 400);
       xue = new PIXI.extras.AnimatedSprite(xueArr)
       xue.width = 400
       xue.height = 400
@@ -446,17 +372,7 @@
       xue.loop = true
       xue.play()
 
-      let xue2Arr = []
-      for (let i = 0; i < 7; i++) {
-        let texture
-        if (i < 10) {
-          texture = PIXI.Texture.fromFrame(`血_0000${i}.png`)
-        } else {
-          texture = PIXI.Texture.fromFrame(`血_000${i}.png`)
-        }
-        xue2Arr.push(texture)
-      }
-
+      let xue2Arr = su.filmstrip("images/xue2.png", 400, 400);
       xue2 = new PIXI.extras.AnimatedSprite(xue2Arr)
       xue2.width = 400
       xue2.height = 400
@@ -532,6 +448,27 @@
       death.width = 481
       death.height = 50
       death.position.set(140, 150)
+
+      // install now
+      install = new PIXI.Sprite(
+        PIXI.loader.resources["images/install.png"].texture
+      );
+      install.width = 385
+      install.height = 104
+      install.position.set(375, 80)
+      install.anchor.set(0.5, 0.5)
+      app.stage.addChild(install)
+      TweenMax.from(install, 0.8, {
+        width: 350,
+        height: 95,
+        repeat: -1,
+        yoyo: true,
+        ease: Power1.easeInOut
+      })
+      install.interactive = true;
+      install.on('pointerdown', function () { 
+        FbPlayableAd.onCTAClick()
+      })
 
       // 滤镜
       let kawaseBlur = new PIXI.filters.KawaseBlurFilter(1, 3, 1, 1);
@@ -691,8 +628,6 @@
         jzhbj.play();
         app.stage.addChild(xue)
         app.stage.addChild(xue2)
-
-
       }, 100)
     }
 
