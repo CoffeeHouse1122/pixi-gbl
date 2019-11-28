@@ -1,0 +1,135 @@
+{"frames": {
+
+"血2_00000.png":
+{
+	"frame": {"x":2,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00001.png":
+{
+	"frame": {"x":404,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00002.png":
+{
+	"frame": {"x":806,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00003.png":
+{
+	"frame": {"x":1208,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00004.png":
+{
+	"frame": {"x":1610,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00005.png":
+{
+	"frame": {"x":2,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00006.png":
+{
+	"frame": {"x":404,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00007.png":
+{
+	"frame": {"x":806,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00008.png":
+{
+	"frame": {"x":1208,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00009.png":
+{
+	"frame": {"x":1610,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00010.png":
+{
+	"frame": {"x":2,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00011.png":
+{
+	"frame": {"x":404,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00012.png":
+{
+	"frame": {"x":806,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00013.png":
+{
+	"frame": {"x":1208,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血2_00014.png":
+{
+	"frame": {"x":1610,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+}},
+"animations": {
+	"血2": ["血2_00000.png","血2_00001.png","血2_00002.png","血2_00003.png","血2_00004.png","血2_00005.png","血2_00006.png","血2_00007.png","血2_00008.png","血2_00009.png","血2_00010.png","血2_00011.png","血2_00012.png","血2_00013.png","血2_00014.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "xue1.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3c5c5f51a0fbe498d2c544a42a5dfd19:23974842bd9f3cf73a75d2ba53765bab:14e758eb0da083cb00de696081f5bf6f$"
+}
+}

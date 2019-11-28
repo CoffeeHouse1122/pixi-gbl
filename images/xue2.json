@@ -1,0 +1,79 @@
+{"frames": {
+
+"血_00000.png":
+{
+	"frame": {"x":2,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00001.png":
+{
+	"frame": {"x":404,"y":2,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00002.png":
+{
+	"frame": {"x":2,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00003.png":
+{
+	"frame": {"x":404,"y":404,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00004.png":
+{
+	"frame": {"x":2,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00005.png":
+{
+	"frame": {"x":404,"y":806,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00006.png":
+{
+	"frame": {"x":2,"y":1208,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+},
+"血_00007.png":
+{
+	"frame": {"x":404,"y":1208,"w":400,"h":400},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":400},
+	"sourceSize": {"w":400,"h":400}
+}},
+"animations": {
+	"血": ["血_00000.png","血_00001.png","血_00002.png","血_00003.png","血_00004.png","血_00005.png","血_00006.png","血_00007.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "xue2.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:362fe8c185444f2cbefa6d7a7815c7c5:3245b5134f44d1ca2d007b73b907cde9:cfe2e95b957814e8ebbab7a37169e83d$"
+}
+}
